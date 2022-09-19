@@ -1,0 +1,149 @@
+<%- include("partials/header") -%>
+
+
+<div id="section1">
+    <h1>
+        La <span id="animation-feu">Breizh de l'espoir</span><br />Brulons la
+        mucoviscidose
+    </h1>
+</div>
+
+
+
+    <div id="section3">
+        <h2>Les artistes qui nous soutiennent</h2>
+        <%if(typeof soutiens !== "undefined") {%>
+        <div class="card-wrapper">
+
+           <%soutiens.forEach(element => {%>
+                <%if(element.type_support ==="artiste") {%>
+                        <div class=' card-container '>
+                            <div class='card card-flip '>
+                                <div class='front card-block'>
+                                    <img class='card-img-top supports_img' src='images/uploads/<%=element.poster%>' alt='Photo de <%=element.firstname%> <%=element.lastname%>'>
+                                    <h4 class='card-title support_title'><%=element.firstname%> <%=element.lastname%></h4>
+                                </div>
+                                <div class='back card-block'>
+                                    <p><%=element.description%></p>
+                                    <%if(typeof element.link_website !== "undefined") {%>
+                                        <a href='<%= element.link_website%>' target='_blank' style='text-align: center; margin: auto; width: 100%; display: block'>En savoir plus</a>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                <%}%>
+            <%})%>
+        </div>
+
+        <div class="card-wrapper-responsive">
+
+            <%soutiens.forEach(element => {%>
+            <%if(element.type_support ==="artiste") {%>
+            <div class=' card-container-responsive '>
+                <h2 class='title_img_responsive'><%=element.firstname%> <%=element.lastname%></h2>
+                <img class="support_img_responsive" src='images/uploads/<%=element.poster%>' alt='Photo de <%=element.firstname%> <%=element.lastname%>'>
+                        <p><%=element.description%></p>
+                        <%if(typeof element.link_website !== "undefined") {%>
+                            <a href='<%= element.link_website%>' target='_blank' style='text-align: center; margin: auto; width: 100%; display: block'>En savoir plus</a>
+                        <%}%>
+            </div>
+            <%}%>
+            <%})%>
+
+        </div>
+
+        <%}%>
+    </div>
+
+<div id="section3">
+    <h2>Nos autres soutiens !</h2>
+    <%if(typeof soutiens !== "undefined") {%>
+    <div class="card-wrapper">
+
+    <%soutiens.forEach(element => {%>
+    <%if(element.type_support ==="autre") {%>
+    <div class='d-inline-flex justify-content-around flex-wrap'>
+        <div class=' card-container '>
+            <div class='card card-flip '>
+                <div class='front card-block'>
+                    <img class='card-img-top supports_img' src='images/uploads/<%=element.poster%>' alt='Photo de <%=element.firstname%> <%=element.lastname%>'>
+                    <h4 class='card-title support_title'><%=element.firstname%> <%=element.lastname%></h4>
+                </div>
+                <div class='back card-block'>
+                    <p><%=element.description%></p>
+                    <%if(typeof element.link_website !== "undefined") {%>
+                        <a href='<%= element.link_website%>' target='_blank' style='text-align: center; margin: auto; width: 100%; display: block'>En savoir plus</a>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+    <%})%>
+    </div>
+    <div class="card-wrapper-responsive">
+
+        <%soutiens.forEach(element => {%>
+        <%if(element.type_support ==="autre") {%>
+        <div class=' card-container-responsive '>
+            <h2 class='title_img_responsive'><%=element.firstname%> <%=element.lastname%></h2>
+            <img class="support_img_responsive" src='images/uploads/<%=element.poster%>' alt='Photo de <%=element.firstname%> <%=element.lastname%>'>
+            <p><%=element.description%></p>
+            <%if(typeof element.link_website !== "undefined") {%>
+                <a href='<%= element.link_website%>' target='_blank' style='text-align: center; margin: auto; width: 100%; display: block'>En savoir plus</a>
+            <%}%>
+        </div>
+        <%}%>
+        <%})%>
+
+    </div>
+    <%}%>
+
+</div>
+
+
+
+        <%if(typeof articles !== "undefined") {%>
+<div id="section3">
+    <h2>Lily'Art</h2>
+            <%articles.forEach(element => {%>
+                <%if(element.article_type === "lily"){%>
+                    <div class='lily_article'>
+                        <h2 class='lily_titre'><%=element.title%></h2>
+                        <div class='lily_contenu'>
+                            <p><%-element.content%></p>
+                        </div>
+                    </div>
+                <%}%>
+            <%})%>
+        </div>
+        <%}%>
+
+
+        <%if(typeof articles !== "undefined") {%>
+            <div id="section3">
+                <h2>Articles de nos soutiens</h2>
+                <p class="supports_p">Nos divers soutiens souhaitaient pouvoir s'exprimer sur l'association et son rôle, nous leur avons donc réservez un endroit où s'exprimer ! Encore merci à eux !</p>
+
+            <div class="d-inline-flex justify-content-around flex-wrap">
+                <%articles.forEach(element => {%>
+                    <%if (element.article_type === "message_support"){%>
+                        <div class='supports_article'>
+                            <h2 class="supports_titre"><%=element.title%></h2>
+                            <p class="supports_contenu">
+                                <%if(element.noHtml.length >99) {%>
+                                <%=element.noHtml.substring(0,100)%>...
+                                <%} else { %>
+                                <%=element.noHtml%>
+                                <%}%>
+                                </p>
+                            <a href="/nos-soutiens/<%=element.title.toLowerCase().replaceAll(" ", "-")%>/<%=element.id%>">Lire le témoignage</a>
+
+                        </div>
+                    <%}%>
+                <%})%>
+            </div>
+            </div>
+
+        <%}%>
+<%- include("partials/footer") -%>

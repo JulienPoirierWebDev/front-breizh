@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Votre demande de contact</title>
+    <style>
+        body {
+            background-color: #F3F5F9;
+        }
+        .header_div {
+            height: 80px;
+            background-color: #FA7D00;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            font-weight: bolder;
+        }
+        .footer_div {
+            height: 60px;
+            background-color:#3EDBF0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .me_footer {
+            color: #04009A;
+            font-weight: bolder;
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
+        .me_header {
+            color: #04009A;
+            font-weight: bolder;
+            font-size: 1.4rem;
+            text-decoration: none;
+        }
+
+        .message_div {
+            padding: 20px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin: auto;
+        }
+
+        .me {
+            color: #FA7D00;
+            font-weight: bolder;
+            font-size: 1.4rem;
+        }
+
+        .you {
+            padding: 10px;
+            color: #04009A;
+            font-weight: bolder;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="header_div">
+        <p><a class="me_header" href="https://julienpoirier-webdev.com/">Julien Poirier Web Dev</a><br/>Votre partenaire en développement web !</p>
+
+
+    </div>
+    <div class="message_div">
+        <p>Bonjour,
+            <br/>
+            <br/>
+            Vous avez reçu une demande de contact de '%mail_utilisateur%' avec le message suivant :<br><br>
+            <span class="you">'%mail_message%'</span>
+            <br>
+            <br>
+            Le motif indiqué est le suivant : '%motif%'.
+            <br>
+            <br>
+            Vous pouvez contacter cette personne a l'adresse mail suivante : '%mailContact%'
+            <br/>
+            <br/>
+            <br/>
+
+            Cordialement,
+
+            <br/>
+            <br/>
+            Julien, votre développeur bénévole</p>
+    </div>
+    <div class="footer_div">
+        <p>Message automatique envoyé depuis le site internet de <a class="me_footer" href="https://labreizhdelespoir.fr">labreizhdelespoir.fr</a></p>
+
+    </div>
+</main>
+
+</body>
+</html>

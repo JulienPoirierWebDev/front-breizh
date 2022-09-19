@@ -1,0 +1,77 @@
+
+<nav>
+    <div id="nav-item" class="backend_nav">
+        <a href="/login-for-pp/gerer-les-evenements">Gérer les évènements</a>
+        <a href="/login-for-pp/gerer-les-news">Gérer les news</a>
+        <a href="/login-for-pp/gerer-les-soutiens">Gérer les soutiens</a>
+        <a href="/login-for-pp/gerer-la-section-lily-art">Gérer la section Lily'Art</a>
+        <a href="/login-for-pp/gerer-la-section-maladie">Gérer la page 'Maladie'</a>
+        <a href="/login-for-pp/gerer-la-page-vente">Gérer la page 'Vente'</a>
+        <a href="/login-for-pp/gerer-la-page-dons">Gérer la page 'Dons'</a>
+        <a href="/login-for-pp/gerer-le-contenu-fixe">Gérer le contenu fixe du site</a>
+        <a href="/login-for-pp/gerer-les-images">Gérer les images</a>
+        <a href="/login-for-pp/logout">Se déconnecter</a>
+    </div>
+</nav>
+
+<!-- Système de remonté d'information liées aux erreurs, échecs et réussites des requêtes :
+permet a l'utilisateur d'avoir un feedback -->
+<div>
+    <div>
+        <%if (typeof errors !== "undefined") {%>
+            <%errors.forEach(error => {%>
+                <h1><%= error%></h1>
+            <%})%>
+
+        <%} %>
+
+        <%if (typeof errors_sql !== "undefined") {%>
+            <%errors_sql.forEach(error => {%>
+                <h1><%= error%></h1>
+            <%})%>
+        <%} %>
+
+        <%if (typeof success_sql !== "undefined") {%>
+            <%success_sql.forEach(success => {%>
+                <h1><%= success%></h1>
+            <%})%>
+        <%} %>
+
+    </div>
+</div>
+<%if(typeof images !== "undefined") {%>
+
+<div><p class="img-clickable">Voir les images</p>
+    <div class="img_container_admin hidden">
+        <h2>Liste des images disponibles</h2>
+            <% images.forEach(image => {%>
+            <div>
+                <p><%=image.name%></p>
+
+                <p><%=image.alt%></p>
+
+                <img loading="lazy" src="/images/uploads/<%=image.name%>" alt="">
+            </div>
+
+            <%})%>
+    </div>
+</div>
+<%}%>
+
+
+<%if(typeof docs !== "undefined") {%>
+    <div><p class="doc-clickable">Voir les documents</p>
+        <div class="doc_container_admin hidden">
+            <h2>Liste des documents disponibles</h2>
+            <%docs.forEach(element => {%>
+                <div>
+                    <p><%=element.doc_name%></p>
+                </div>
+                <div>
+                   <a href="/mentions-legales/<%=element.doc_link%>">Telecharger doc</a>
+                </div>
+                <%})%>
+        </div>
+    </div>
+<%}%>
+

@@ -1,0 +1,138 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Créer un évènement</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form  action="/request/post_event" method="POST">
+            <div >
+                <p>
+                    <input class="form-control backend_input" type="text" placeholder="Nom de l'évènement" name="name" alt="Le nom de l'évènement" maxlength="255" required>
+                </p>
+
+                <p>
+                    <textarea class="form-control backend_input" name="description"  placeholder="Description de l'évènement" required></textarea>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" type="text" name="city" placeholder="Ville de l'évènement" alt="Ville de l'évènement" maxlength="255" required>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" type="text" name="location"  placeholder="Lieu de l'évènement" alt="Lieu de l'évènement" maxlength="255" required>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" type="date" name="date_event" required>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" type="text" name="poster" placeholder="Affiche de l'évènement" required>
+                </p>
+
+                <p>
+                    <select class="form-control backend_input" name="link_map" id="link_map-select" required>
+                        <option value="">--Une carte doit-elle apparaitre ? --</option>
+                        <option value="true">Oui</option>
+                        <option value="false">Non</option>
+
+                    </select>
+                </p>
+
+                <p>
+                    <input type="submit" class="btn btn-warning btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+    <h2>Évènements crées </h2>
+
+    <div class='row d-flex justify-content-around align-items-stretch'>
+
+    <%if(typeof evenements !== "undefined" ) {%>
+    <%evenements.forEach(element => {%>
+            <div class='backend_card col-lg-4'>
+                <img class='card-img-top backend_img' src='/images/uploads/<%=element.poster%>'>
+                <div class='card-body' >
+                    <div class='card-subtitle'>Nom de l'image : <%=element.poster%></div>
+
+                    <div class='card-subtitle'>Nom : <%=element.name%></div>
+                    <div class='card-subtitle'>Ville :<%=element.city%></div>
+
+                    <div class='card-text'>Description :<%=element.description%></div>
+                    <div class='card-text'>Lieu :<%=element.location%></div>
+                    <div class='card-text'>Date : <%=element.date_event%></div>
+
+                    <%if(typeof prices !== "undefined" ) {%>
+                    <%prices.forEach(element_price => {%>
+                    <%if(element_price.id_event === element.id) {%>
+
+                    <div class='backend_subcard backend_subcard_type2 price_<%=element_price.id%>'>
+
+                    <h2>Catégorie de prix</h2>
+                    <div>Nom : <%=element_price.categ_name%></div>
+                    <div>Description : <%=element_price.categ_descr%></div>
+                    <div>Prix : <%=element_price.price%> €</div>
+                    <a class='btn btn-danger btn-lg backend_button' href='/request/delete_price_event/<%=element_price.id%>'><button class='backend_button_reset'>Supprimer la catégorie de prix</button></a>
+
+                </div>
+                    <%}%>
+                <%})%>
+                <%}%>
+    <%if(typeof paiements !== "undefined" ) {%>
+        <%paiements.forEach(element_paiement => {%>
+                    <%if(element_paiement.id_event === element.id) {%>
+
+                    <div class='backend_subcard backend_subcard_type1 paiement_<%=element_paiement.id%>'>
+                    <h2>Id paiement :<%=element_paiement.id%></h2>
+                    <div>Nom :<%=element_paiement.method%></div>
+                    <div>Lien :<%=element_paiement.link_paiement%></div>
+                    <a class='btn btn-danger btn-lg backend_button' href='/request/delete_paiement_event/<%=element_paiement.id%>'><button class='backend_button_reset'>Supprimer le lien de paiement</button></a>
+
+            </div>
+                    <%}%>
+        <%})%>
+    <%}%>
+
+            <div class=' row d-flex justify-content-around align-items-stretch'>
+                <a class='btn btn-warning btn-lg backend_button2' href='creer-un-prix/price_event/<%=element.id%>'><button type='button' class='backend_button_reset'>Ajouter une catégorie de prix</button></a>
+                <a class='btn btn-warning btn-lg backend_button2' href='creer-un-paiement/paiement_event/<%=element.id%>'><button type='button' class='backend_button_reset'>Ajouter une méthode de paiement</button></a>
+            </div>
+            <div class=' row d-flex justify-content-around align-items-stretch'>
+                <a class='btn btn-warning btn-lg backend_button2'  href='gerer-les-evenements/update/<%=element.id%>'><button type='button' class='backend_button_reset'>Modifier l'évènement</button></a>
+                <a class='btn btn-danger btn-lg backend_button2' href='/request/delete_event/<%=element.id%>'><button type='button' class='backend_button_reset'>Supprimer l'évènement</button></a>
+
+            </div>
+        </div>
+    </div>
+
+    <%})%>
+    <%}%>
+
+
+
+        </div>
+    </div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

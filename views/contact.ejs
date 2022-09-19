@@ -1,0 +1,91 @@
+<%- include("partials/header") -%>
+
+<div id="section1">
+    <h1>
+        La <span id="animation-feu">Breizh de l'espoir</span><br />Brulons la
+        mucoviscidose
+    </h1>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Vous souhaitez nous contacter ? </h2>
+    <p class="contact-text">Notre nature étant l'échange et le partage, nous serons ravi d'avoir vos retours sur notre site et son contenu. De même, si vous souhaitez nous proposer de nouvelles actions, des propositions de collaboration ou simplement votre témoignage, nous serons ravi de vous lire et de vous recontacter !</p>
+    <div id="newEvent_form"  class="backend_form">
+<!--
+        <form action="/contactez-nous" method="post" enctype="multipart/form-data">
+            <p>
+                <label for="name">Nom et Prénom</label>
+                <input class="form-control backend_input" type="text" placeholder="Vos nom et prénom" name="name" id="name" />
+            </p>
+            <p>
+                <label for="email">Votre email</label>
+                <input class="form-control backend_input" type="email" placeholder="Votre adresse email" name="email" id="email" />
+            </p>
+            <p>
+                <select class="form-control backend_input" name="objet"  id="objet" required>
+                    <option value="">-- Choisir un motif de contact --</option>
+                    <option value="soutien">Une personne de mon entourage ou moi-même a la mucoviscidose et j'ai des questions / besoin d'un soutien.</option>
+                    <option value="mecenat">J'ai une demande a propos d'un partenariat ou d'un mécénat.</option>
+                    <option value="amelioration">Je voudrais vous faire un retour sur le site internet et sur son contenu.</option>
+
+                    <option value="autre">Autre demande.</option>
+                </select>
+            </p>
+            <p>
+                <label for="message">Votre message</label>
+                <textarea class="form-control backend_input" placeholder="Votre message" name="message" id="message"></textarea>
+            </p>
+            <div class="contact-div-img">
+                <img class="contact-img" src="/images/captcha/<%= urlCaptcha %>" alt="Image représentant le calcul a faire, dont le résultat est <?= $results[$rand]['result']?>">
+            </div>
+            <p>
+                <input class="form-control backend_input" type="text" placeholder="Résultat du calcul sur l'image" name="result" />
+            </p>
+            <p>
+                <input type="hidden" name='control' value="<%=resultCaptcha%>">
+            </p>
+            <button type="submit" >Envoyer votre message</button>
+        </form>-->
+        <form action="/contactez-nous" method="post">
+            <p>
+                <label for="name">Nom et Prénom</label>
+                <input class="form-control backend_input" type="text" placeholder="Vos nom et prénom" name="name" id="name" />
+            </p>
+            <p>
+                <label for="email">Votre email</label>
+                <input class="form-control backend_input" type="email" placeholder="Votre adresse email" name="email" id="email" />
+            </p>
+            <p>
+                <select class="form-control backend_input" name="objet"  id="objet" required>
+                    <option value="">-- Choisir un motif de contact --</option>
+                    <option value="soutien">Une personne de mon entourage ou moi-même a la mucoviscidose et j'ai des questions / besoin d'un soutien.</option>
+                    <option value="mecenat">J'ai une demande a propos d'un partenariat ou d'un mécénat.</option>
+                    <option value="amelioration">Je voudrais vous faire un retour sur le site internet et sur son contenu.</option>
+
+                    <option value="autre">Autre demande.</option>
+                </select>
+            </p>
+            <p>
+                <label for="message">Votre message</label>
+                <textarea class="form-control backend_input" placeholder="Votre message" name="message" id="message"></textarea>
+            </p>
+            <div class="contact-div-img">
+                <img class="contact-img" src="/images/captcha/<%= urlCaptcha %>" alt="Image représentant le calcul a faire, dont le résultat est <?= $results[$rand]['result']?>">
+            </div>
+            <%if(typeof robot !== "undefined") {%>
+                <p><%=robot%></p>
+            <%}%>
+            <p>
+                <input class="form-control backend_input" type="text" placeholder="Résultat du calcul sur l'image" name="result" />
+            </p>
+            <p>
+                <input type="hidden" name='control' value="<%=resultCaptcha%>">
+            </p>
+            <button class="btn btn-light btn-lg mb-3 mt-5 backend_button" type="submit" >Envoyer votre message</button>
+        </form>
+
+    </div>
+</div>
+
+<%- include("partials/footer") -%>
+

@@ -1,0 +1,37 @@
+<div class='card don-card'>
+    <img class='card-img-top don-img' src='images/elements/<%=don.poster.replace("'", "&#39;")%>' alt='Image illustrant ce type de don'>
+    <div class='card-body'>
+        <h3 class='card-title don-title'><%=don.name%></h3>
+        <p><%don.resume%></p>
+        <%if(typeof don_paiements !== "undefined" && typeof don_paiements[0] !== "undefined") {%>
+        <p class='don-paiement-text'><span>ATTENTION :</span> Pour recevoir votre reçu fiscal, vous devez <span>impérativement</span> indiquer votre <span>adresse</span> et autoriser Paypal et Yapla à la communiquer à \"La Breizh de l'espoir, brûlons la mucoviscidose\"</p>
+        <%don_paiements.forEach(element => {%>
+
+        <%if(don.id === element.id_dons) { %>
+        <div class='don-paiement'>
+
+            <%let link = element.link_paiement.replace('"', "'")%>
+            <%if(element.method ==="paypal") {%>
+            <div class='paiement-div'><p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par paypal : </p>
+                <div class='paypal_div don-paiement-border' ><%-element.link_paiement%></div>
+            </div>
+            <%} else if(element.method ==="yapla") {%>
+            <div class='paiement-div'>
+                <p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par Yapla: </p>
+                <a class='don-paiement don-paiement-border' href='<%=link%>'>
+                    <img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'>
+                </a>
+            </div>
+            <%} else if (element.method ==="externe") {%>
+            <div class='paiement-div'>
+                <a class='btn btn-lg btn-warning don-button' href='<%=link%>'>Choisir ce don</a>
+            </div>
+            <%}%>
+            <%}%>
+
+            <%})%>
+        </div>
+        <%}%>
+
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Prix</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form
+                <%if(action==="update"){%>
+
+                action="/request/update_<%=type%>"
+            <%} else {%>
+                action="/request/post_<%=type%>"
+
+                <%}%>
+                method="POST">
+            <div>
+                <input type="hidden" value="<%=type_id%>" name="id_<%=type%>">
+
+                <%if(typeof id !== "undefined"){%>
+                <input type="hidden" value="<%=id%>" name="id">
+                <%}%>
+
+                <p>
+                    <input
+                            class="form-control backend_input"
+                            placeholder="Nom de la catégorie de prix"
+                            type="text"
+                            name="categ_name"
+                            alt="Le nom de la catégorie de prix"
+                            maxlength="255"
+                            <%if( typeof categ_name !== "undefined"){%>
+                            value="<%=categ_name%>"
+                            <%}%>
+                            required>
+                </p>
+
+                <p>
+                    <input
+                            class="form-control backend_input"
+                            placeholder="Description de la catégorie de prix"
+                            type="text" name="categ_descr"
+                            alt="La description de la catégorie"
+                            maxlength="255"
+                            <%if( typeof categ_descr !== "undefined"){%>
+                            value="<%=categ_descr%>"
+                            <%}%>
+                            required>
+                </p>
+
+                <p>
+                    <input
+                            class="form-control backend_input"
+                            placeholder="Prix de la catégorie"
+                            type="text"
+                            name="price"
+                            alt="Le prix de la catégorie"
+                            maxlength="255"
+                            <%if(typeof price !== "undefined"){%>
+                            value="<%=price%>"
+                            <%}%>
+                            required>
+                </p>
+                <p>
+                    <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

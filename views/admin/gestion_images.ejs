@@ -1,0 +1,79 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Uploader une image</h2>
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/post_image" method="POST" enctype="multipart/form-data" >
+            <div>
+                <p>
+                    <!--<label for="name"> : </label>-->
+                    <input class="form-control backend_input" type="text" placeholder="Nom que vous voulez donner au fichier" name="name" alt="Nom que vous voulez donner au fichier" maxlength="255" required>
+                </p>
+
+                <p>
+                    <!--<label for="name"> : </label>-->
+                    <input class="form-control backend_input" type="text" placeholder="Texte alternatif pour lecteur et SEO" name="alt" alt="Texte alternatif pour lecteur et SEO" maxlength="255" required>
+                </p>
+
+                <p>
+                    <!--<label for="name"> : </label>-->
+                    <input class="form-control backend_input" type="file" name="item" required>
+                </p>
+
+                <p>
+                    <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+        </form>
+
+    </div>
+
+    <h2>Images uploadées</h2>
+
+    <div class='row d-flex justify-content-around align-items-stretch'>
+
+    <%if(typeof images !== "undefined" ) {%>
+    <%images.forEach(element => {%>
+        <div class='backend_card col-lg-4'>
+            <img class='card-img-top backend_img' src='/images/uploads/<%=element.name%>' alt='Image de la catégorie de vente'>
+
+            <div class='card-body'>
+                <div class='card-subtitle'>Nom du fichier: <%=element.name%></div>
+                <div class='card-text'>Description alternative : <%=element.alt%></div>
+
+
+                <div class=' row d-flex justify-content-around align-items-stretch'>
+
+                    <a class='btn btn-danger btn-lg backend_button2' href='/request/delete_image/<%=element.id%>/<%=element.name%>'>Supprimer l'image</a>
+
+                </div>
+            </div>
+        </div>
+
+        <%})%>
+    <%}%>
+
+
+
+        </div>
+    </div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

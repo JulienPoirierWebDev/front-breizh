@@ -1,0 +1,75 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Modifier un soutien</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/update_support" method="POST">
+            <div>
+
+                <input type="hidden" name="id" value="<%=soutien.id%>">
+                <p>
+                    <select class="form-control backend_input" name="type_support" id="type_support-select" required>
+                        <option value="">--Catégorie du soutien--</option>
+                        <option value="artiste">Artiste</option>
+                        <option value="autre">Autre</option>
+
+                    </select>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" placeholder="Prénom du soutien" type="text" name="firstname" alt="Le prénom du soutien" maxlength="255" value="<%=soutien.firstname%>" required>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" placeholder="Nom de famille du soutien" type="text" name="lastname" alt="Le nom de famille du soutien" maxlength="255"  value="<%=soutien.lastname%>" required>
+                </p>
+
+                <p>
+                    <textarea class="form-control backend_input" placeholder="Description du soutien" name="description" rows="6" required><%=soutien.description%></textarea>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" placeholder="Lien du site internet du soutien" type="text" name="link_website" alt="Le site internet du soutien" maxlength="255" value="<%=soutien.link_website%>">
+                </p>
+
+
+                <p>
+                    <label class="backend_label" for="poster">Photo du soutien</label>
+                    <input class="form-control backend_input" type="text" name="poster" value="<%=soutien.poster%>"  required>
+                </p>
+                <p>
+                    <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+
+    </div>
+
+
+
+
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

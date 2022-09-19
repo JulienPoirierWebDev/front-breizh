@@ -1,0 +1,80 @@
+
+<%- include("partials/header") -%>
+
+<div id="section3" class="index">
+
+    <div>
+        <h2>Merci de nous aider financièrement par le don !</h2>
+    </div>
+
+    <div class="don-container-indiv">
+
+
+    <%if(parseInt(don.id) === parseInt(don_id)) {%>
+        <div class='card don-card'>
+            <img class='card-img-top don-img' src='/images/elements/<%=don.poster.replace("'", "&#39;")%>' alt='Image illustrant ce type de don'>
+            <div class='card-body'>
+                <h3 class='card-title don-title'><%=don.name%></h3>
+                <p class="card-body"><%-don.content%></p>
+                <p class="don-paiement-text don-attention-paiement">Merci de bien accepter de <span>transmettre votre adresse</span> à notre association, c'est une <span>condition nécessaire</span> pour recevoir votre reçu fiscal et <span>obtenir une déduction d'impôts</span> pour votre don !</p>
+                <div class="don-paiement-container">
+                    <%console.log(don_paiements)%>
+                        <%don_paiements.forEach(element => {%>
+
+                    <%if(parseInt(don.id) === parseInt(element.id_dons)) { %>
+                        <%let link = element.link_paiement.replace('"', "'")%>
+                        <%if(element.method ==="paypal") {%>
+                        <div class='paiement-div'><p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par paypal : </p>
+                            <div class='paypal_div don-paiement-border' ><%-element.link_paiement%></div>
+                        </div>
+                        <%} else if(element.method ==="yapla") {%>
+                        <div class='paiement-div'>
+                            <p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par Yapla: </p>
+                            <a class='don-paiement don-paiement-border' href='<%=link%>'>
+                                <img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'>
+                            </a>
+                        </div>
+                        <%} else if (element.method ==="externe") {%>
+                        <form method="post" action="/faire-un-don/merci-de-noter-votre-adresse" class='paiement-div'>
+                            <input type="hidden" value="<%=link%>" name="link">
+                            <input class='btn btn-lg btn-warning don-button' type="submit">Choisir ce don</a>
+                        </form>
+                        <%}%>
+                    <%}%>
+
+                    <!--
+
+                <%if(parseInt(don.id) === parseInt(element.id_dons)) { %>
+                <div class='don-paiement'>
+
+                    <%let link = element.link_paiement.replace('"', "'")%>
+                    <%if(element.method ==="paypal") {%>
+                    <div class='paiement-div'><p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour faire un don par paypal : </p>
+                        <div class='paypal_div don-paiement-border' ><%-element.link_paiement%></div>
+                    </div>
+                    <%} else if(element.method ==="yapla") {%>
+                    <div class='paiement-div'>
+                        <p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour faire un don par Yapla: </p>
+                        <a class='don-paiement don-paiement-border' href='<%=link%>'>
+                            <img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'>
+                        </a>
+                    </div>
+                    <%} else if (element.method ==="externe") {%>
+                    <div class='paiement-div'>
+                        <a class='btn btn-lg btn-warning don-button' href='<%=link%>'>Choisir ce don</a>
+                    </div>
+                    <%}%>
+                </div>
+            <%}%>
+-->
+            <%})%>
+
+                </div>
+            </div>
+        </div>
+    <%}%>
+
+    </div>
+</div>
+
+<%- include("partials/footer") -%>

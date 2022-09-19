@@ -1,0 +1,67 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Méthode de paiement</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form
+                <%if(action==="update"){%>
+
+                action="/request/update_<%=type%>"
+                <%} else {%>
+                action="/request/post_<%=type%>"
+
+                <%}%>
+                method="POST">
+            <div>
+                <input type="hidden" value="<%=type_id%>" name="id_<%=type%>">
+                <p>
+                    <select class="form-control backend_input" name="method" id="paiement_name-select" required>
+                        <option value="">-- Choisir une méthode de paiement --</option>
+                        <option value="yapla">Yapla</option>
+                        <option value="paypal">Paypal</option>
+                    </select>
+                </p>
+
+
+                <p>
+                    <input
+                            class="form-control backend_input"
+                            placeholder="Lien vers la page de paiement"
+                            type="text"
+                            name="link_paiement"
+                            alt="La description de la catégorie"
+                            <%if(typeof link_paiement !== "undefined"){%>
+                            value="<%=link_paiement%>"
+                            <%}%>
+                            required>
+                </p>
+                <p>
+                    <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

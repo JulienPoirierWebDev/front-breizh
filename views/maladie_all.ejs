@@ -1,0 +1,49 @@
+
+<%- include("partials/header") -%>
+
+
+
+<div id="section1">
+    <h1>
+        La <span id="animation-feu">Breizh de l'espoir</span><br />Brulons la
+        mucoviscidose
+    </h1>
+</div>
+
+<div id="section3">
+    <h2>La maladie</h2>
+    <p>Pour mieux combattre la Mucoviscidose, nous avons trouvé important de vous en parler. Vous pouvez regarder la vidéo ci-dessous ainsi que prendre connaissances des articles que nous écrirons régulièrement.</p>
+    <div>
+        <iframe width='420' height='315'
+                  src='https://www.youtube.com/embed/OoAJqxxSRgY'>
+        </iframe>
+    </div>
+    <div class="articles-container">
+        <% if(typeof articles !== "undefined") {%>
+
+            <%articles.forEach(article => {%>
+                <%if(article.article_type === "maladie") {%>
+                    <div class='maladie_article'>
+
+                        <h2 class='maladie_titre'><%= article.title%></h2>
+                        <div>
+                            <%if(article.noHtml.length >99) {%>
+                            <%=article.noHtml.substring(0,100)%>...
+                            <%} else { %>
+                            <%=article.noHtml%>
+                            <%}%>
+
+                            </br>
+                            <a href="/connaitre-la-maladie/<%=article.title.toLowerCase().replaceAll(" ", "-")%>/<%=article.id%>">Lire l'article</a>
+                        </div>
+
+                    </div>
+                <%}%>
+            <%})%>
+        <%}%>
+    </div>
+</div>
+
+
+
+<%- include("partials/footer") -%>

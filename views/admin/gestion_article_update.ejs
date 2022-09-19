@@ -1,0 +1,54 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Modifier un article</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/update_articles" method="POST" >
+            <input type="hidden" value="<%=article.id%>" name="id">
+            <input type="hidden" name="article_type" value="<%=article.article_type%>">
+
+            <p>
+                <input class="form-control backend_input" type="text" placeholder="Titre de l'article" name="title" alt="titre de l'article" maxlength="255" value="<%=article.title%>" required>
+            </p>
+
+            <p>
+                <textarea class="form-control backend_input" name="content"  placeholder="Contenu de l'article" rows="10" required><%=article.content%></textarea>
+            </p>
+
+            <p>
+                <label for="poster" class="backend_label">Choisir une image pour l'article (optionnel)</label>
+
+                <input class="form-control backend_input" type="text" name="poster" title="Image de l'article" value="<%=article.poster%>">
+            </p>
+
+            <p>
+                <input class="form-control backend_input" type="text"  placeholder="Identifiant de la video Youtube (optionnel)" name="video" value="<%=article.video%>" alt="identifiant de la vidéo Youtube" maxlength="255">
+            </p>
+
+            <p>     <input class="btn btn-light btn-lg mb-3 mt-5 backend_button" type="submit">
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

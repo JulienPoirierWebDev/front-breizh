@@ -1,0 +1,78 @@
+<%- include("partials/header") -%>
+
+
+<div id="section1">
+    <h1>
+        La <span id="animation-feu">Breizh de l'espoir</span><br />Brulons la
+        mucoviscidose
+    </h1>
+</div>
+
+<div id="section3">
+    <div>
+        <h2>Voici les différents moyens de nous aider financièrement</h2>
+    </div>
+
+    <% if(typeof dons !== "undefined" && dons[0] !== "undefined") { %>
+        <div id="section3" class="index">
+
+            <div class='row d-flex justify-content-around align-items-stretch'>
+                <% dons.forEach(don => { %>
+
+                <div class='card don-card'>
+                    <img class='card-img-top don-img' src='images/elements/<%=don.poster.replace("'", "&#39;")%>' alt='Image illustrant ce type de don'>
+                    <div class='card-body'>
+                        <h3 class='card-title don-title'><%=don.name%></h3>
+                        <p><%don.resume%></p>
+                        <%if(typeof don_paiements !== "undefined" && typeof don_paiements[0] !== "undefined") {%>
+                        <p class='don-paiement-text attention-anim'><span>ATTENTION :</span> Pour recevoir votre reçu fiscal, vous devez <span>impérativement</span> indiquer votre <span>adresse</span> et autoriser Paypal et Yapla à la communiquer à "La Breizh de l'espoir, brûlons la mucoviscidose"</p>
+                        <div class='don-encart'>
+
+                            <!--<a href="/faire-un-don/merci-de-noter-votre-adresse/<%=don.id%>">Deux choix possibles !!</a>-->
+
+                            <%don_paiements.forEach(element => {%>
+                            <%if(don.id === element.id_dons) { %>
+                                <%let link = element.link_paiement.replace('"', "'")%>
+                                <%if(element.method ==="paypal") {%>
+                                <div class='paiement-div'><p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par paypal : </p>
+                                    <div class='paypal_div don-paiement-border' ><%-element.link_paiement%></div>
+                                </div>
+                                <%} else if(element.method ==="yapla") {%>
+                                <div class='paiement-div'>
+                                    <p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par Yapla: </p>
+                                    <a class='don-paiement don-paiement-border' href='<%=link%>'>
+                                        <img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'>
+                                    </a>
+                                </div>
+                                <%} else if (element.method ==="externe") {%>
+                                <form method="post" action="/faire-un-don/merci-de-noter-votre-adresse" class='paiement-div'>
+                                    <input type="hidden" value="<%=link%>" name="link">
+                                    <input class='btn btn-lg btn-warning don-button' type="submit">Choisir ce don</a>
+                                </form>
+                                <%}%>
+                            <%}%>
+
+                            <%})%>
+
+                        </div>
+                        <%}%>
+
+                    </div>
+                </div>
+
+                <%})%>
+
+            </div>
+        </div>
+    <%}%>
+
+
+
+    <div class="don-text">
+        <a class="don-link" href="/mentions-legales/1655808269585-BULLETIN-ADHESION.pdf"><p>Pour faire un don en chèque ou numéraire, cliquez ici pour avoir le bulletin d'adhésion.</p></a>
+        <a class="don-link" href="/mentions-legales/1649086751298-UN DON = AVANTAGES FISCAUX.pdf"><p>Pensez a demander votre avantage fiscal : cliquez ici pour avoir le document.</p></a>
+    </div>
+</div>
+
+
+<%- include("partials/footer") -%>

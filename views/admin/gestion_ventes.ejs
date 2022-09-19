@@ -1,0 +1,99 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Créer une rubriques de vente</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/post_achat" method="POST" >
+            <div>
+                <p>
+                    <!--<label for="name"> : </label>-->
+                    <input class="form-control backend_input" type="text" placeholder="Nom de la rubrique de 'Vente'" name="name"  alt="Le nom de la rubrique de 'Vente'" maxlength="255" required>
+                </p>
+
+
+
+                <p>
+                    <textarea class="form-control backend_input"  name="description"  placeholder="Contenu de l'article de la page 'Vente'" required></textarea>
+                </p>
+
+                <!--<p>
+                    <input class="form-control backend_input" type="text" name="link"  placeholder="Lien vers la page web concernée" alt="Lien vers la page web concernée" maxlength="255" required>
+                </p>-->
+
+                <p>
+                    <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+        </form>
+
+    </div>
+
+    <h2>Rubriques de vente créées</h2>
+
+    <div class='row d-flex justify-content-around align-items-stretch'>
+
+    <%if(typeof ventes !== "undefined" ) {%>
+    <%ventes.forEach(element => {%>
+        <div class='backend_card col-lg-4'>
+
+            <div class='card-body' >
+
+                <div class='card-subtitle'>Nom : <%=element.name%></div>
+
+                <div class='card-text'>Contenu de l'article : <%=element.description%></div>
+
+                <%if(typeof paiements_ventes !== "undefined") {%>
+            <%paiements_ventes.forEach(element_paiement => {%>
+                <%if(element_paiement.id_achat === element.id){%>
+            <div class='backend_subcard backend_subcard_type1 paiement_<%=element_paiement.id%>'>
+                <h2>Id paiement :<%=element_paiement.id%></h2>
+                <div>Nom :<%=element_paiement.method%></div>
+                <div>Lien :<%=element_paiement.link_paiement%></div>
+                <a class='btn btn-danger btn-lg backend_button' href='/request/delete_paiement_achat/<%=element_paiement.id%>'><button class='backend_button_reset'>Supprimer le lien de paiement</button></a>
+            </div>
+            <%}%>
+        <%})%>
+
+        <%}%>
+
+                <div class=' row d-flex justify-content-around align-items-stretch'>
+                    <a class='btn btn-light btn-lg backend_button2' href='creer-un-paiement/paiement_achat/<%=element.id%>'><button type='button' class='backend_button_reset'>Ajouter un moyen de paiement</button></a>
+                </div>
+
+                <div class=' row d-flex justify-content-around align-items-stretch'>
+
+                    <a class='btn btn-light btn-lg backend_button2' href='gerer-la-page-vente/update/<%=element.id%>'>Modifier la rubrique de vente</a>
+                    <a class='btn btn-danger btn-lg backend_button2' href='/request/delete_achat/<%=element.id%>'>Supprimer la rubrique de vente</a>
+
+                </div>
+            </div>
+        </div>
+
+        <%})%>
+    <%}%>
+
+
+
+        </div>
+    </div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

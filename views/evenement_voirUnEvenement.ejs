@@ -1,0 +1,109 @@
+<%- include("partials/header") -%>
+
+<%if(typeof one_event !== "undefined") {%>
+<div id="section3" class="event_container">
+<div   class="evenement-niveau1 evenement-card">
+        <div id="evenement-affiche" class="evenement-niveau2">
+            <div class="img-container">
+                <img
+                        src="/images/uploads/<%=one_event.poster%>"
+                        alt="Affiche de l'évènement 1"
+                />
+            </div>
+        </div>
+        <div id="evenement-info" class="evenement-niveau2">
+            <div id="evenement-description" class="evenement-niveau3">
+                <h2>
+                    <%= one_event.name%>
+                </h2>
+                <p>
+                    <%- one_event.description%>
+                </p>
+            </div>
+            <div class="separateurX"></div>
+            <div id="evenement-date" class="evenement-niveau3">
+                <h2>Lieu, date et horaire</h2>
+
+                <p>L'évènement aura lieu le <%=one_event.date_event.toLocaleDateString("fr-FR")%> à <%=one_event.city%> - <%=one_event.location%> </p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="evenement-reservation" class="evenement-niveau1">
+        <div id="evenement-total" class="evenement-niveau2">
+            <%if(typeof prices_event !== "undefined") {%>
+
+            <div id="evenement-prix" class="evenement-niveau3">
+                <h2>Tarifs</h2>
+                <% prices_event.forEach(price => {%>
+                    <%if(parseInt(price.id_event) === parseInt(one_event.id)) {%>
+                        <p class="event_price">Catégorie <%=price.categ_name%> : <span><%=price.price%></span> € par personne</p>
+                    <%}%>
+                <%})%>
+                <br><p class="event_paiement-paragraph">
+                    L'ensemble des gains de cet évènement servira à la lutte contre la mucoviscidose
+                </p>
+
+                <!--
+                <form action = "https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="VDGRFWDM5ABEA">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                -->
+
+            </div>
+
+<%}%>
+
+
+
+        </div>
+        <%if( typeof paiements_event !== "undefined") {%>
+
+        <div id="evenement-submit" class="evenement-niveau2">
+            <h2 class="mt-2">Méthodes de paiement</h2>
+
+            <div class="event_paiements_group">
+
+                <%paiements_event.forEach(paiement=> {%>
+                    <%if(parseInt(paiement.id_event) === parseInt(one_event.id)) {%>
+                        <%let link = paiement.link_paiement.replace('"', "'")%>
+
+                        <%if(paiement.method === "paypal") {%>
+                            <div class='paypal_div'><%-link%></div>
+                            <%} else if(paiement.method === "yapla") {%>
+                            <a class='event_paiement' href='<%=link%>>'><img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'></a>
+                            <%} else if (element.method ==="externe") {%>
+                        <div class='paiement-div'>
+                            <a class='btn btn-lg btn-warning don-button' href='<%=link%>'>Choisir ce don</a>
+                        </div>
+                        <%}%>
+                    <%}%>
+                <%})%>
+        </div>
+        <%}%>
+<!--
+        <p class="event_paiement-paragraph">Vous êtes libre de choisir la méthode de paiment qui vous convient, sachez toutefois que Yapla ne prend pas de commission, ce qui fait que la totalité  de la somme sera perçu par notre association.</p>
+-->
+    </div>
+</div>
+</div>
+
+<%if(one_event.link_map === "true") {%>
+        <div class="evenement-niveau1" id="evenement-lieu">
+    <div id="evenement-map" class="evenement-niveau2">
+
+        <iframe  height="380" id="gmap_canvas" src="<%=url_map%>" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+        <!--<iframe src="<%-one_event.link_map%>"  height="380"></iframe>-->
+    </div>
+</div>
+    <%}%>
+<%}%>
+
+
+<%- include("partials/footer") -%>

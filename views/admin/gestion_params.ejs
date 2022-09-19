@@ -1,0 +1,171 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Créer une rubrique réseau social</h2>
+
+
+    <div id="newEvent_form"  class="backend_form">
+
+        <form action="/request/post_reseaux" method="POST" >
+            <div>
+                <p>
+                    <select class="form-control backend_input" name="name" id="name-select" required>
+                        <option value="">-- Choisir un réseau social --</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="youtube">Youtube</option>
+                        <option value="twitter">Twitter</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="instagram">Instagram</option>
+                        <!--<option value="pinterest">Pinterest</option>-->
+                        <!--<option value="tiktok">TikTok</option>-->
+                        <!--<option value="clubhouse">Clubhouse</option>-->
+                        <option value="snapchat">Snapchat</option>
+                        <!--<option value="soundcloud">SoundCloud</option>-->
+                        <!--<option value="periscope">Periscope</option>-->
+                        <option value="flickr">Flickr</option>
+                        <!--<option value="vimeo">Vimeo</option>-->
+                        <!--<option value="dailymotion">Dailymotion</option>-->
+                        <!--<option value="reddit">Reddit</option>-->
+                        <!--<option value="twitch">Twitch</option>-->
+                        <option value="whatsapp">Whatsapp</option>
+                    </select>
+                </p>
+
+                <p>
+                    <input class="form-control backend_input" type="text" name="link_reseau"  placeholder="Lien vers la page web concernée" alt="Lien vers la page web concernée" maxlength="255" required>
+                </p>
+                <p>
+                    <input class="form-control backend_input" type="hidden" name="reseaux" value=true>
+                </p>
+                <p>
+                    <input class="form-control backend_input" type="hidden" name="categ" value="reseaux">
+                </p>
+
+                <p>
+                    <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+
+        </form>
+
+    </div>
+
+    <h2>Liens réseaux sociaux crées : </h2>
+
+    <div class='row d-flex justify-content-around align-items-stretch'>
+
+    <%if(typeof reseaux !== "undefined" ) {%>
+    <%reseaux.forEach(element => {%>
+            <div class='backend_card col-lg-4'>
+                <div class='card-body' >
+
+                    <div class='card-subtitle'>Nom : <%=element.name%></div>
+                    <div class='card-text'>Lien vers le réseau social : <%=element.link_reseau%></div>
+                    <div class=' row d-flex justify-content-around align-items-stretch'>
+                         <a class='btn btn-danger btn-lg backend_button2' href='/request/delete_reseaux/<%=element.id%>'>Supprimer le lien réseau</a></div>
+                </div>
+            </div>
+        <%})%>
+    <%}%>
+
+
+
+        </div>
+    </div>
+
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Créer un document téléchargeable </h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/post_document" method="POST" enctype="multipart/form-data">
+
+            <p>
+                <input class="form-control backend_input" type="text" name="doc_name"  placeholder="Nom du document" required />
+            </p>
+
+            <p><label for="doc_link" class="backend_label">Choisir le fichier à importer</label>
+                <input class="form-control backend_input" type="file" name="item" placeholder="Document a uploader" required>
+            </p>
+
+
+            <p>
+                <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+            </p>
+        </form>
+
+    </div>
+
+    <h2>Documents uploadés crées : </h2>
+
+    <div class='row d-flex justify-content-around align-items-stretch'>
+
+        <%if(typeof documents !== "undefined" ) {%>
+            <%documents.forEach(element => {%>
+                <div class='backend_card col-lg-4'>
+                    <div class='card-body' >
+
+                        <div class='card-text'>Nom du document :<%=element.doc_name%></div>
+                        <div class='card-text'>Lien vers le document : <a href='/public/images/uploads/<%=element.doc_link%>'><%=element.doc_name%></a></div>
+                        <div class=' row d-flex justify-content-around align-items-stretch'>
+                            <a  class='btn btn-danger btn-lg backend_button2' href='/request/delete_document/<%=element.id%>/<%=element.doc_link%>'>Supprimer le document</a>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        <%}%>
+
+
+
+    </div>
+</div>
+
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Infos sur l'association</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/update_association" method="POST" >
+
+            <%if(typeof informations !== "undefined") {%>
+                <%informations.forEach(element => {%>
+                <p>
+                    <input class='form-control backend_input'   type='hidden' name='info-name-<%=element.id%>' value='<%=element.name.replaceAll("'", "&#39;")%>'>
+                </p>
+                <p>
+                    <input class='form-control backend_input'  type='hidden' name='info-id-<%=element.id%>' value='<%=element.id%>'>
+                </p>
+                <p>
+                    <input class='form-control backend_input' type='text' name='info-content-<%=element.id%>'  placeholder='<%=element.name.replaceAll("'", "&#39;")%>' required value='<%=element.content.replaceAll("'", "&#39;")%>'/>
+                </p>
+                <%})%>
+            <%}%>
+            <p>
+                <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+            </p>
+        </form>
+    </div>
+
+</div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

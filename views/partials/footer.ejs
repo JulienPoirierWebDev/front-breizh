@@ -1,0 +1,45 @@
+
+
+
+
+
+<footer>
+    <% if(typeof reseaux !== "undefined" && typeof reseaux[0] !== "undefined") {%>
+
+
+    <div class="wrapper">
+        <ul>
+            <% reseaux.forEach(element => { %>
+            <li class="<%=element.name%>">
+                <i class="fa fa-<%=element.name%>" aria-hidden="true"></i>
+                <div class="slider">
+                    <p><a href='<%=element.link_reseau%>'><%=element.name%></a></p>
+                </div>
+            </li>
+            <%})%>
+        </ul>
+    </div>
+    <%}%>
+
+
+        <div class="mentions-legales">
+        <p>
+            Tous droits réservés - Association "La Breizh de l'espoir, brûlons la
+            mucoviscidose" - <a class="footer_site" href="/mentions-legales">Mentions légales et documents téléchargeables</a>
+        </p>
+        <p>Site conçu, développé et hébergé avec ❤ par <a class="footer_site" href="https://julienpoirier-webdev.com/">Julien Poirier WebDev</a>.</p>
+    </div>
+</footer>
+
+<script src="/js/img-clickable.js"></script>
+<script src="/js/formdata.js"></script>
+<script src="/js/attention.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+

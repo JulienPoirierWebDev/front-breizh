@@ -1,0 +1,60 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Créer une news</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/post_news" method="POST">
+
+            <p>
+                <textarea class="form-control backend_input" name="content"  placeholder="Contenu de la news" required></textarea>
+            </p>
+
+            <p>     <input class="btn btn-light btn-lg mb-3 mt-5 backend_button" type="submit">
+            </p>
+
+        </form>
+
+    </div>
+
+    <h2>News créées</h2>
+
+    <div class='row d-flex justify-content-around align-items-stretch'>
+
+    <%if(typeof news !== "undefined" ) {%>
+    <%news.forEach(element => {%>
+            <div class='backend_subcard backend_subcard_type2'>
+                <div>Message : <%=element.content%></div>
+                <div>Date de création : <%=element.creation_date%></div>
+                <div>Date de mise à jour : <%=element.update_date%></div>
+                <div class=' row d-flex justify-content-around align-items-stretch'>
+
+                    <a class='btn btn-light btn-lg backend_button' href='gerer-les-news/update/<%=element.id%>'>Modifier la news</a>
+                    <a class='btn btn-danger btn-lg backend_button' href='/request/delete_news/<%=element.id%>'>Supprimer la news</a>
+                </div>
+            </div>
+        <%})%>
+    <%}%>
+
+
+
+        </div>
+    </div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

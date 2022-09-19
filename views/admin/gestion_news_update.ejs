@@ -1,0 +1,43 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Modifier une news</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/update_news" method="POST">
+
+            <p>
+                <textarea class="form-control backend_input" name="content"  placeholder="Contenu de la news" required><%=news.content%></textarea>
+            </p>
+
+            <input type="hidden" name="id" value="<%=news.id%>">
+
+            <input type="hidden" name="creation_date" value="<%=news.creation_date%>">
+            <input type="hidden" name="update_date" value="<%=news.update_date%>">
+
+
+            <p>     <input class="btn btn-light btn-lg mb-3 mt-5 backend_button" type="submit">
+            </p>
+
+        </form>
+
+    </div>
+    </div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

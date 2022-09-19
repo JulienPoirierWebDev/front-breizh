@@ -1,0 +1,33 @@
+<%- include("partials/header") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+        <%errors_sql.forEach(error => {%>
+            <p><%= error%></p>
+        <%})%>
+    <%} %>
+    <%if (typeof message_erreur !== "undefined") {%>
+
+        <p class="message_erreur"><%=message_erreur%></p>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <div id="newEvent_form" class="backend_form">
+        <p class="message_erreur"></p>
+
+        <form action="" method="post">
+            <div class="mb-3">
+                <input class="form-control backend_input" type="text" name="pseudo" placeholder="Identifiant de connexion" required>
+            </div>
+            <div class="mb-3 mt-5">
+                <input placeholder="Mot de passe" class="form-control backend_input" type="password" name="password" required>
+            </div>
+            <button id="login" type="" class="btn btn-light btn-lg mb-3 mt-5 backend_button">Se connecter !</button>
+
+        </form>
+    </div>
+</div>
+
+
+<%- include("partials/footer") -%>

@@ -1,0 +1,63 @@
+.img-clickable {
+    position: fixed;
+    top: 19%;
+    right: 5px;
+    transform: translateY(-50%);
+    box-sizing: content-box;
+    background-color: var(--color-white);
+    border: 5px solid var(--color-orange);
+    outline: 5px solid black;
+    width: 150px;
+    padding:10px;
+    z-index: 1;
+}
+
+.img_container_admin, .doc_container_admin {
+    position: fixed;
+    top: 30%;
+    width: 50%;
+    height: 50%;
+    right: 20px;
+    overflow: scroll;
+    background-color: var(--color-white);
+    border: 5px solid var(--color-orange);
+    outline: 5px solid black;
+}
+
+.img_container_admin h2, .doc_container_admin h2 {
+    text-align: center;
+}
+
+.img_container_admin > div, .doc_container_admin>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid var(--color-blue);
+    border-top: 5px solid var(--color-blue);
+
+}
+
+.img_container_admin p, .doc_container_admin p {
+    padding: 10px;
+    text-align: center;
+}
+
+.img_container_admin > div > img{
+    width: 200px;
+}
+
+
+.doc-clickable {
+    position: fixed;
+    top: 40%;
+    right: 5px;
+    transform: translateY(-50%);
+    box-sizing: content-box;
+    background-color: var(--color-white);
+    border: 5px solid var(--color-orange);
+    outline: 5px solid black;
+    width: 150px;
+    padding:10px;
+    z-index: 1;
+}

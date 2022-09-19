@@ -1,0 +1,49 @@
+<%- include("partials/header") -%>
+
+
+<div id="section1">
+    <h1>
+        La <span id="animation-feu">Breizh de l'espoir</span><br />Brulons la
+        mucoviscidose
+    </h1>
+</div>
+
+<div id="section3">
+    <div>
+        <h2>Voici les différents objets dont nous vous proposons l'achat solidaire !</h2>
+        <p>En effet, pour nous permettre de financer nos actions, nous avons souhaitez vous proposer plusieurs types de biens. Vous pouvez ainsi nous financer et montrer a tous le soutien que vous nous apportez !</p>
+    </div>
+
+        <%if(typeof achats_paiements !== "undefined" && typeof achats_paiements[0] !== "undefined" ) {%>
+            <% achats_paiements.forEach(paiement => {%>
+            <%if(achat.id === paiement.id_achat) { %>
+                <%let link = paiement.link.replace('"', "'")%>
+                <%if(paiement.method ==="paypal") {%>
+                <div class='paiement-div'><p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par paypal : </p>
+                    <div class='paypal_div don-paiement-border' ><%=link%></div>
+                </div>
+                <%} else if(paiement.method ==="yapla") {%>
+                <div class='paiement-div'>
+                    <p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par Yapla: </p>
+                    <a class='don-paiement don-paiement-border' href='<%=link%>'>
+                        <img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'>
+                    </a>
+                </div>
+                <%} else if (paiement.method ==="externe") {%>
+                <div class='paiement-div'>
+                    <a class='btn btn-lg btn-warning don-button' href='<%=link%>'>Choisir ce don</a>
+                </div>
+
+                <%}%>
+            <%}%>
+            <%})%>
+        <%}%>
+
+</div>
+
+
+
+
+
+
+<%- include("partials/footer") -%>

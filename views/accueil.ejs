@@ -1,0 +1,196 @@
+<%- include("partials/header") -%>
+
+
+<div id="section1">
+    <h1>
+        La <span id="animation-feu">Breizh de l'espoir</span><br/>Brulons la
+        mucoviscidose
+    </h1>
+    <div id="section1-flexbody">
+        <div id="section1-img" class="img-container">
+            <img src="/images/nousquatre.jpg" alt="#"/>
+        </div>
+
+        <div id="section1-bloc">
+
+            <h2>
+                <p>La vie n'est pas toujours belle</p>
+                <p> mais sans la vie, rien n'est beau</p>
+            </h2>
+            <p class="texte">
+                La Breizh de l'Espoir est le fruit du combat de
+                <span class="mot-important">Pascal</span> et
+                <span class="mot-important">Patricia</span> pour soutenir
+                <span class="mot-important">Logan</span> et
+                <span class="mot-important">Frantz</span>, leurs deux enfants, et plus
+                généralement toutes les personnes atteintes de la mucoviscidose.
+            </p>
+            <p class="texte">
+                L'association s'est fixée
+                <span class="mot-important">4 objectifs</span> :
+            </p>
+            <ul>
+                <li><i class=" icone fa fa-fire" aria-hidden="true"></i>Soutenir la recherche</li>
+                <li><i class=" icone fa fa-fire" aria-hidden="true"></i>Permettre de mieux vivre avec la maladie</li>
+                <li><i class=" icone fa fa-fire" aria-hidden="true"></i>Aider directement les patients</li>
+                <li><i class=" icone fa fa-fire" aria-hidden="true"></i>Etre solidaire de la lutte contre toutes les
+                    maladies génétiques
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="section3">
+    <h2>L'histoire de la Breizh !</h2>
+    <div class="texte-container">
+        <p class="texte-histoire">Le 24 décembre 1985, Frantz est un beau cadeau de Noël pour ses parents. Cinq ans plus tard, le 29 octobre 1990, Patricia et Pascal donnent un magnifique petit frère à Frantz en la personne de Logan. Tout se passe très bien, même si les deux accouchements sont interminables pour la maman et .... pour le papa.
+        </p>
+        <p class="texte-histoire">Durant les années écoulées entre les deux naissances, la science évolue, notamment dans le dépistage néonatal de certaines maladies. C'est à la suite d'une prise de sang effectuée après sa naissance, et alors que rien ne pouvait nous avoir alerté, que nous apprenons que Logan est atteint de mucoviscidose. S'en suit toute une batterie de tests pratiqués sur tous les membres de la famille, dont Frantz. Et là, une nouvelle bombe nous tombe sur la tête : Frantz est également atteint.
+        </p>
+        <p class="texte-histoire">Brutalement, dans l'anonymat d'un local de soin, les médecins nous disent que cette maladie est extrêmement grave et qu’il n’y a aucun espoir de les sauver. Soudainement, le monde s’écroule sous nos pieds. Dès cet instant, nous savons que nos vies à tous les quatre, ne seraient pas celles dont nous avions rêvées. Il nous a fallu du temps pour sortir la tête de l’eau.
+        </p>
+        <p class="texte-histoire">Après avoir organisé et participé à diverses manifestations pour lutter contre la mucoviscidose, en 2009, pour l'amour de Frantz et Logan et pour venir en aide à tous les patients atteints de cette terrible maladie qui ne se voit pas, nous avons décidé de créer notre propre structure. Ainsi est née « LA BREIZH DE L'ESPOIR, brûlons la mucoviscidose ».</p>
+    </div>
+</div>
+
+
+<%if(typeof events !== "undefined" && typeof events[0] !== "undefined") { %>
+    <div id="section2" class="index">
+        <h2>Venez participer à nos actions !</h2>
+        <div>
+            <div class="row-row">
+                <% events.forEach(event => {%>
+                    <div class='card-event'>
+                        <span class='card-event-element'>
+                        <div class='img-container img-card-event'>
+                              <img src='/images/uploads/<%= event.poster.replace("'", "&#39;")%>' alt='Affiche de l&#39;évènement: <%=event.name%>'/>
+                        </div>
+                            <a class='hidden' href='/nos-evenements/<%=event.id%>/<%=event.name.replace(" ", "-").toLowerCase()%>'>
+                                <div class='link-card-event'>
+                                    <p>En savoir plus</p>
+                                </div>
+                            </a>
+                            <div class='titre-card-event'>
+                                <p><%=event.name%></p>
+                            </div>
+                        </span>
+                    </div>
+                <%})%>
+            </div>
+        </div>
+    </div>
+<%}%>
+
+<% if(typeof dons !== "undefined" && dons[0] !== "undefined") { %>
+    <div id="section3" class="index">
+
+        <div>
+            <h2>Vous pouvez nous soutenir financièrement en réalisant un don</h2>
+        </div>
+        <div class="don-container">
+            <% dons.forEach(don => { %>
+
+            <div class='card don-card'>
+                <img class='card-img-top don-img' src='images/elements/<%=don.poster.replace("'", "&#39;")%>' alt='Image illustrant ce type de don'>
+                <div class='card-body'>
+                    <h3 class='card-title don-title'><%=don.name%></h3>
+                    <p></p>
+                    <%if(typeof don_paiements !== "undefined" && typeof don_paiements[0] !== "undefined") {%>
+                    <p class='don-paiement-text attention-anim'><span>ATTENTION :</span> Pour recevoir votre reçu fiscal, vous devez <span>impérativement</span> indiquer votre <span>adresse</span> et autoriser Paypal et Yapla à la communiquer à "La Breizh de l'espoir, brûlons la mucoviscidose"</p>
+                    <!--<div class="don-paiement-container">
+                        <a href="faire-un-don/merci-de-noter-votre-adresse/<%=don.id%>">En savoir plus sur ce don !</a>
+                    </div>-->
+                    <div class='don-encart'>
+
+                        <!--<a href="/faire-un-don/merci-de-noter-votre-adresse/<%=don.id%>">Deux choix possibles !!</a>-->
+
+                        <%don_paiements.forEach(element => {%>
+                        <%if(don.id === element.id_dons) { %>
+                            <%let link = element.link_paiement.replace('"', "'")%>
+                            <%if(element.method ==="paypal") {%>
+                            <div class='paiement-div'><p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par paypal : </p>
+                                <div class='paypal_div don-paiement-border' ><%-element.link_paiement%></div>
+                            </div>
+                            <%} else if(element.method ==="yapla") {%>
+                            <div class='paiement-div'>
+                                <p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par Yapla: </p>
+                                <a class='don-paiement don-paiement-border' href='<%=link%>'>
+                                    <img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'>
+                                </a>
+                            </div>
+                            <%} else if (element.method ==="externe") {%>
+                            <form method="post" action="/faire-un-don/merci-de-noter-votre-adresse" class='paiement-div'>
+                                <input type="hidden" value="<%=link%>" name="link">
+                                <input class='btn btn-lg btn-warning don-button' type="submit">Choisir ce don</a>
+                            </form>
+                            <%}%>
+                        <%}%>
+
+                        <%})%>
+
+                    </div>
+                </div>
+                </div>
+                <%}%>
+
+
+            <%})%>
+            <div class="don-text">
+                <a class="don-link" href="/mentions-legales/1655808269585-BULLETIN-ADHESION.pdf"><p>Pour faire un don en chèque ou numéraire, cliquez ici pour avoir le bulletin d'adhésion.</p></a>
+                <a class="don-link" href="/mentions-legales/1649086751298-UN DON = AVANTAGES FISCAUX.pdf"><p>Pensez a demander votre avantage fiscal : cliquez ici pour avoir le document.</p></a>
+            </div>
+        </div>
+
+    <%}%>
+
+
+            <% if(typeof achats !=="undefined" && typeof achats[0] !=="undefined") {%>
+
+                <div id="section3" class="index">
+                    <div>
+                        <h2>Nous vous proposons aussi divers articles à l'achat solidaire !</h2>
+                    </div>
+                    <div class="don-container">
+                        <% achats.forEach(one_achat => {%>
+                        <div class="card don-card">
+                            <h3 class="card-title don-title"><%=one_achat.name%></h3>
+                            <p class="don-paiement-text"><%-one_achat.description%></p>
+                        <%if(typeof achat_paiements !== "undefined" && typeof achat_paiements[0] !== "undefined" ) {%>
+                            <div class="achat_paiements_group">
+                            <% achat_paiements.forEach(paiement => {%>
+
+                            <%if(one_achat.id === paiement.id_achat) { %>
+                                <%let link = paiement.link_paiement.replace('"', "'")%>
+                                <%if(paiement.method ==="paypal") {%>
+                                <div class='paiement-div'><p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par paypal : </p>
+                                    <div class='paypal_div don-paiement-border' ><%=link%></div>
+                                </div>
+                                <%} else if(paiement.method ==="yapla") {%>
+                                <div class='paiement-div'>
+                                    <p style='color:var(--color-orange);font-size: 2rem;font-weight: bolder'>Pour payer par Yapla: </p>
+                                    <a class='don-paiement don-paiement-border' href='<%=link%>'>
+                                        <img src='/images/paiements/yapla.png' alt='Icone de paiement par yapla | Crédit Agricole'>
+                                    </a>
+                                </div>
+                                <%} else if (paiement.method ==="externe") {%>
+                                <div class='paiement-div'>
+                                    <a class='btn btn-lg btn-warning don-button' href='<%=link%>'>Choisir ce don</a>
+                                </div>
+
+                        <%}%>
+                            <%}%>
+                            <%})%>
+                            </div>
+                        <%}%>
+                        </div>
+                            <%})%>
+
+                    </div>
+
+
+
+            <%}%>
+                </div>
+
+<%- include("partials/footer") -%>

@@ -1,0 +1,16 @@
+<%- include("partials/header") -%>
+<%- include("partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+
+<%- include("partials/footer") -%>
+
+
+

@@ -1,0 +1,87 @@
+<%- include("partials/header") -%>
+
+
+<div id="section3">
+
+    <h3 class="mentions_legales_titre">Documents à télécharger</h3>
+    <ul class="mentions_legales_docs">
+        <%if(typeof documents !== "undefined") {%>
+        <%documents.forEach(document => {%>
+            <div class='document-link'>
+                <p><span>Nom du document :</span><a href='/mentions-legales/<%=document.doc_link%>'><%=document.doc_name%></a></p>
+            </div>
+            <%})%>
+            <%}%>
+    </ul>
+</div>
+
+<div id="section3">
+    <h3 class="mentions_legales_titre">L'association</h3>
+
+    <ul class="mentions_legales">
+        <%if(typeof association_infos !== "undefined") {%>
+            <%association_infos.forEach(info => {%>
+            <li><span><%= info.name%></span><p><%= info.content%></p>
+        <%})%>
+        <%}%>
+    </ul>
+
+    <h3 class="mentions_legales_titre">Conception, développement et hébergement</h3>
+
+    <ul class="mentions_legales">
+
+        <li><span>Raison sociale :</span><p> JULIEN POIRIER WEBDEV EIRL</p></li>
+        <li><span>Adresse du siège :</span> <p>23 rue de la fontenelle - 77169 BOISSY-LE-CHATEL</p></li>
+        <li><span>Numéro de téléphone :</span><p> 06 19 92 54 73</p></li>
+        <li><span>Adresse Email :</span><p>contact@julienpoirier-webdev.fr</p></li>
+        <li><span>Site internet :</span><a href="https://julienpoirier-webdev.com/"></a><p>www.julienpoirier-webdev.com</p></li>
+
+
+
+    </ul>
+</div>
+
+<div id="section3">
+    <h3 class="mentions_legales_titre">Consentement Formulaire de Contact</h3>
+    <ul class="mentions_legales">
+
+        <li><span>Finalité du traitement de vos données personnelles : </span><p>
+                Vos données personnelles seront utilisées seulement pour que nous puissions vous contacter suite à votre demande initiale via le formulaire de contact.
+            </p></li>
+
+
+        <li><span>Types de données : </span><p>
+                Le consentement demandé porte sur la donnée personnelle suivante : Nom, Prénom, Email.
+            </p></li>
+
+
+        <li><span>Transfert de données à des tiers : </span><p>
+                Ces données personnelles ne sont pas conservées dans le back-office de notre site, seulement par le biais de la rubrique "message envoyé" de l'adresse mail générant les mails indiquant votre demande de contact, que vous recevez en copie de confirmation.
+            </p></li>
+
+
+        <li><span>Durée de conservation des données : </span><p>
+                Vos données seront conservées dans cette boite mail pendant 3 ans sauf sollicitation contraire de votre part. Votre consentement est conservé dans cette limite de durée tant que le traitement des données ne change pas.
+            </p></li>
+
+
+        <li><span>Retrait du consentement : </span><p>
+                Il vous suffit d’écrire à 10 square de Terre Neuve - 35200 RENNES ou de contacter nous par téléphone afin de demander la copie ou la supression de vos données personnelles.
+            </p></li>
+
+
+        <li><span>Prise de décisions automatisée : </span><p>
+                Ces données personnelles ne sont pas utilisées pour de la prise de décision automatisée.
+            </p></li>
+
+
+        <li><span>Responsable du traitement des données : </span><p>
+                Le directeur de la publication, Pascal COTO.
+            </p></li>
+    </ul>
+</div>
+
+
+<%- include("partials/footer") -%>
+
+

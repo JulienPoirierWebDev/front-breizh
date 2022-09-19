@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%if(typeof  title !== "undefined") {%>
+        <title><%=title%></title>
+    <%}%>
+    <%if(typeof  keywords !== "undefined") {%>
+        <meta name="keywords" content="<%=keywords%>">
+    <%}%>
+    <%if(typeof  description !== "undefined") {%>
+        <meta name="description" content="<%=description%>">
+    <%}%>
+
+    <link rel="icon" href="/images/style/Logo Breizh v2.png" />
+
+
+    <link rel="stylesheet" href="/css/styles.pure.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/newstyles.css"/>
+    <link rel="stylesheet" href="/css/responsive.css"/>
+    <link rel="stylesheet" href="/css/otherstyle.css"/>
+    <script src="https://use.fontawesome.com/a1551f26ec.js"></script>
+    <script src="/js/jquery.js" ></script>
+    <script src="/js/script.js"></script>
+
+</head>
+
+<body>
+<header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <div id="logo">
+                <img
+                        src="/images/style/Logo%20Breizh%20v2.png"
+                        alt="Le logo de l'association 'La Breïzh de l'espoir"
+                />
+            </div>
+        </a>
+        <button class="navbar-toggler nav-responsive" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Menu</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a href="/">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a id="don-menu" href="/faire-un-don">Faire un don</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/connaitre-la-maladie">La Maladie</a>
+                </li>
+                <li class="nav-item">
+                    <a  href="/nos-soutiens">Soutiens</a>
+                </li>
+                <%if(typeof achats !== "undefined") {%>
+                    <% if( achats.length > 0 ) {%>
+                        <li class='nav-item'>
+                            <a href='/achats-solidaires'>Achats Solidaires</a></li>
+                    <%}%>
+                <%}%>
+
+                <li class="nav-item">
+                    <a href="/nos-actualites">Une histoire</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.forum.labreizhdelespoir.com/">Forum</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contactez-nous">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div id="no-sticky">
+    <div id="marquee" class="marquee">
+        <%if(typeof last_news !== "undefined") {%>
+            <span>
+                Le dernier mot du président - <%=last_news.creation_date.toLocaleDateString("fr-FR")%> <i class='icone fa fa-fire icone-color' aria-hidden='true'></i> <%= last_news.content%><i class='icone fa fa-fire icone-color'  aria-hidden='true'></i>
+            </span>
+        <%}%>
+    </div>
+

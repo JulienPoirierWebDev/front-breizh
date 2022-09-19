@@ -1,0 +1,69 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Créer un article pour la section Lily'Art</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/post_articles" method="POST" >
+            <input type="hidden" name="article_type" value="lily">
+
+            <p>
+                <input class="form-control backend_input" type="text" placeholder="Titre de l'article" name="title" alt="titre de l'article" maxlength="255" required>
+            </p>
+
+            <p>
+                <textarea class="form-control backend_input" name="content"  placeholder="Contenu de l'article" rows="10" required></textarea>
+            </p>
+
+            <p>     <input class="btn btn-light btn-lg mb-3 mt-5 backend_button" type="submit">
+            </p>
+
+        </form>
+
+    </div>
+
+    <h2>Articles pour la section Lily'Art crées</h2>
+
+    <div class='row d-flex justify-content-around align-items-stretch'>
+
+    <%if( typeof articles !== "undefined" ) {%>
+    <%articles.forEach(element => {%>
+        <%if(element.article_type === "lily"){%>
+            <div class='backend_subcard backend_subcard_type2'>
+                <div>Titre de l'article : <%=element.title%></div>
+                <div><p>Contenu : <%=element.content%></p></div>
+
+
+
+            <div class=' row d-flex justify-content-around align-items-stretch'>
+
+                <a class='btn btn-light btn-lg backend_button' href='gerer-les-articles/update/<%=element.id%>'>Modifier l'article</a>
+                <a class='btn btn-danger btn-lg backend_button' href='/request/delete_articles/lily/<%=element.id%>'>Supprimer l'article</a>
+            </div>
+    </div>
+    <%}%>
+    <%})%>
+    <%}%>
+
+
+
+        </div>
+    </div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+

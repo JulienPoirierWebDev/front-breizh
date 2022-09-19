@@ -1,0 +1,55 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/admin") -%>
+
+<div>
+    <%if (typeof errors_sql !== "undefined") {%>
+    <%errors_sql.forEach(error => {%>
+        <p><%= error%></p>
+    <%})%>
+    <%} %>
+</div>
+
+<div class="container-fluid w-100 backend_container" id="section3">
+    <h2>Modifier une rubrique de vente</h2>
+
+
+    <div id="newEvent_form" class="backend_form">
+
+        <form action="/request/update_achat" method="POST" >
+            <div>
+                <input type="hidden"  name="id" value="<%=vente.id%>">
+                <p>
+                    <!--<label for="name"> : </label>-->
+                    <input class="form-control backend_input" type="text" placeholder="Nom de la rubrique de 'Vente'" name="name" alt="Le nom de la rubrique de 'Vente'" value="<%=vente.name%>" maxlength="255" required>
+                </p>
+
+
+                <p>
+                    <textarea class="form-control backend_input"  name="description"  placeholder="Contenu de l'article de la page 'Vente'" required><%=vente.description%></textarea>
+                </p>
+
+                <!--<p>
+                    <input class="form-control backend_input" type="text" name="link"  placeholder="Lien vers la page web concernée" alt="Lien vers la page web concernée" maxlength="255" required>
+                </p>-->
+
+                <p><label for="poster" class="backend_label">Choisir l'image associée</label>
+                    <input class="form-control backend_input" type="text" name="poster" placeholder="Image" required>
+                </p>
+
+                <p>
+                    <input type="submit" class="btn btn-light btn-lg mb-3 mt-5 backend_button">
+                </p>
+            </div>
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<%- include("../partials/footer") -%>
+
+
+
